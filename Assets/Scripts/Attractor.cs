@@ -5,34 +5,58 @@ using UnityEngine;
 public class Attractor : MonoBehaviour
 {
 
-  const float G = 667.4f;
+  public static List<Attractor> Attractors;
+  public static List<Attractor> virtualAttractors;
 
+  public static float G = Universe_Settings.gravitationalConstant;
+  public Rigidbody rb;
   public Vector3 initialForce;
 
-  public static List<Attractor> Attractors;
+  public bool isVirtualAttractor = false;
 
-  public Rigidbody rb;
+  public void SetUp(float _mass, Vector3 _initialForce, bool _isVirtualAttractor = false){
+    rb = gameObject.GetComponent<Rigidbody>();
+    rb.mass = _mass;
+    initialForce = _initialForce;
+    isVirtualAttractor = _isVirtualAttractor;
+  }
 
   void FixedUpdate(){
 
-
-    foreach(Attractor attractor in Attractors){
-      if (attractor != this)
-        Attract(attractor);
+    if(!isVirtualAttractor){
+      foreach(Attractor attractor in Attractors){
+        if (attractor != this)
+          Attract(attractor);
+      }
+    }
+    else{
+      foreach(Attractor virtualAttractor in virtualAttractors){
+        if (virtualAttractor != this)
+          Attract(virtualAttractor);
+      }
     }
   }
 
   void OnEnable(){
-    if (Attractors == null)
-      Attractors = new List<Attractor>();
+    if(!isVirtualAttractor){
+      if (Attractors == null)
+        Attractors = new List<Attractor>();
 
-    Attractors.Add(this);
+      Attractors.Add(this);
+    }
+    else{
+      if (virtualAttractors == null)
+        virtualAttractors = new List<Attractor>();
+
+      virtualAttractors.Add(this);
+    }
 
     AddInitialForce();
   }
 
   void OnDisable(){
-    Attractors.Remove(this);
+    if(!isVirtualAttractor)Attractors.Remove(this);
+    else virtualAttractors.Remove(this);
   }
 
   void Attract(Attractor objToAttract){
