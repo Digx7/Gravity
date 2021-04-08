@@ -345,6 +345,115 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Map",
+            "id": "2c79b5fa-ffe2-425a-b21b-067fc3806645",
+            "actions": [
+                {
+                    "name": "Rotate_x/y",
+                    "type": "PassThrough",
+                    "id": "6de658f4-fdce-4b9a-932f-426813ca0afa",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Rotate_z",
+                    "type": "PassThrough",
+                    "id": "4b10066a-abcb-4687-90fe-933155c3dcf1",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CycleReferencePoint",
+                    "type": "PassThrough",
+                    "id": "0f88676e-171d-41ba-a9dc-bb398cc9e9e9",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "07a267ec-dd96-4736-a46a-cdda90b497bc",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controler",
+                    "action": "Rotate_x/y",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Shoulders",
+                    "id": "8c82583c-e1b5-4863-b2e2-ca7da068ec63",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate_z",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "f082a0bc-bff2-447a-a17c-d62efa9025a2",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controler",
+                    "action": "Rotate_z",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "b24ba926-98e2-4ec9-a262-dac28bff935a",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controler",
+                    "action": "Rotate_z",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "D-pad_up/down",
+                    "id": "22e657c7-3201-4678-a861-57e485cbd957",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleReferencePoint",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "2bb64188-7263-4deb-9072-6524a08e2cdf",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controler",
+                    "action": "CycleReferencePoint",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "63897d13-afab-44c7-924e-a16020a28dd3",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controler",
+                    "action": "CycleReferencePoint",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
         }
     ],
     "controlSchemes": [

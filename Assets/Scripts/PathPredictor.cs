@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PathPredictor : MonoBehaviour
 {
-    [SerializeField] private Scene predictionScene, currentScene;
-    [SerializeField] private PhysicsScene predictionPhysicsScene, currentPhysicsScene;
+    [SerializeField] private static Scene predictionScene, currentScene;
+    [SerializeField] private static PhysicsScene predictionPhysicsScene, currentPhysicsScene;
 
     [SerializeField] private GameObject virtualAttractorPrefab;
 
@@ -45,6 +45,7 @@ public class PathPredictor : MonoBehaviour
         SceneManager.MoveGameObjectToScene(virtualObject, predictionScene);
         virtualObject.transform.position = attractor.gameObject.transform.position;
         virtualObject.transform.rotation = attractor.gameObject.transform.rotation;
+        virtualObject.GetComponent<LineRenderer>().positionCount = numberOfIterations;
 
         Attractor virtualAttractor = virtualObject.GetComponent<Attractor>();
         virtualAttractor.SetUp(attractor.rb.mass, attractor.initialForce, true);
@@ -52,8 +53,19 @@ public class PathPredictor : MonoBehaviour
     }
 
     private void RunSimulation(){
+      foreach(Attractor va in Attractor.virtualAttractors) va.AddInitialForce();
       for (int i = 0; i < numberOfIterations; i++){
         predictionPhysicsScene.Simulate(Time.fixedDeltaTime);
+        foreach(Attractor va in Attractor.virtualAttractors){
+          va.SimulateGravity();
+          va.gameObject.GetComponent<LineRenderer>().SetPosition(i, va.gameObject.transform.position);
+        }
+      }
+    }
+
+    private void ClearSimulation(){
+      foreach(Attractor va in Attractor.virtualAttractors){
+        Destroy(va.gameObject);
       }
     }
 }

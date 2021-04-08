@@ -22,7 +22,10 @@ public class Attractor : MonoBehaviour
   }
 
   void FixedUpdate(){
+    SimulateGravity();
+  }
 
+  public void SimulateGravity(){
     if(!isVirtualAttractor){
       foreach(Attractor attractor in Attractors){
         if (attractor != this)
@@ -77,7 +80,7 @@ public class Attractor : MonoBehaviour
       rbToAttract.AddForce(force);
   }
 
-  void AddInitialForce(){
+  public void AddInitialForce(){
     rb.AddRelativeForce(initialForce);
   }
 }

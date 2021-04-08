@@ -358,6 +358,115 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Map"",
+            ""id"": ""2c79b5fa-ffe2-425a-b21b-067fc3806645"",
+            ""actions"": [
+                {
+                    ""name"": ""Rotate_x/y"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""6de658f4-fdce-4b9a-932f-426813ca0afa"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Rotate_z"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""4b10066a-abcb-4687-90fe-933155c3dcf1"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CycleReferencePoint"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""0f88676e-171d-41ba-a9dc-bb398cc9e9e9"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""07a267ec-dd96-4736-a46a-cdda90b497bc"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controler"",
+                    ""action"": ""Rotate_x/y"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Shoulders"",
+                    ""id"": ""8c82583c-e1b5-4863-b2e2-ca7da068ec63"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate_z"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""f082a0bc-bff2-447a-a17c-d62efa9025a2"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controler"",
+                    ""action"": ""Rotate_z"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""b24ba926-98e2-4ec9-a262-dac28bff935a"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controler"",
+                    ""action"": ""Rotate_z"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""D-pad_up/down"",
+                    ""id"": ""22e657c7-3201-4678-a861-57e485cbd957"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleReferencePoint"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""2bb64188-7263-4deb-9072-6524a08e2cdf"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controler"",
+                    ""action"": ""CycleReferencePoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""63897d13-afab-44c7-924e-a16020a28dd3"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controler"",
+                    ""action"": ""CycleReferencePoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -397,6 +506,11 @@ public class @Controls : IInputActionCollection, IDisposable
         m_ZeroGShip_MoveZaxis = m_ZeroGShip.FindAction("MoveZaxis", throwIfNotFound: true);
         m_ZeroGShip_RotateZaxis = m_ZeroGShip.FindAction("RotateZaxis", throwIfNotFound: true);
         m_ZeroGShip_RadarDistance = m_ZeroGShip.FindAction("RadarDistance", throwIfNotFound: true);
+        // Map
+        m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
+        m_Map_Rotate_xy = m_Map.FindAction("Rotate_x/y", throwIfNotFound: true);
+        m_Map_Rotate_z = m_Map.FindAction("Rotate_z", throwIfNotFound: true);
+        m_Map_CycleReferencePoint = m_Map.FindAction("CycleReferencePoint", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -507,6 +621,55 @@ public class @Controls : IInputActionCollection, IDisposable
         }
     }
     public ZeroGShipActions @ZeroGShip => new ZeroGShipActions(this);
+
+    // Map
+    private readonly InputActionMap m_Map;
+    private IMapActions m_MapActionsCallbackInterface;
+    private readonly InputAction m_Map_Rotate_xy;
+    private readonly InputAction m_Map_Rotate_z;
+    private readonly InputAction m_Map_CycleReferencePoint;
+    public struct MapActions
+    {
+        private @Controls m_Wrapper;
+        public MapActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Rotate_xy => m_Wrapper.m_Map_Rotate_xy;
+        public InputAction @Rotate_z => m_Wrapper.m_Map_Rotate_z;
+        public InputAction @CycleReferencePoint => m_Wrapper.m_Map_CycleReferencePoint;
+        public InputActionMap Get() { return m_Wrapper.m_Map; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MapActions set) { return set.Get(); }
+        public void SetCallbacks(IMapActions instance)
+        {
+            if (m_Wrapper.m_MapActionsCallbackInterface != null)
+            {
+                @Rotate_xy.started -= m_Wrapper.m_MapActionsCallbackInterface.OnRotate_xy;
+                @Rotate_xy.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnRotate_xy;
+                @Rotate_xy.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnRotate_xy;
+                @Rotate_z.started -= m_Wrapper.m_MapActionsCallbackInterface.OnRotate_z;
+                @Rotate_z.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnRotate_z;
+                @Rotate_z.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnRotate_z;
+                @CycleReferencePoint.started -= m_Wrapper.m_MapActionsCallbackInterface.OnCycleReferencePoint;
+                @CycleReferencePoint.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnCycleReferencePoint;
+                @CycleReferencePoint.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnCycleReferencePoint;
+            }
+            m_Wrapper.m_MapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Rotate_xy.started += instance.OnRotate_xy;
+                @Rotate_xy.performed += instance.OnRotate_xy;
+                @Rotate_xy.canceled += instance.OnRotate_xy;
+                @Rotate_z.started += instance.OnRotate_z;
+                @Rotate_z.performed += instance.OnRotate_z;
+                @Rotate_z.canceled += instance.OnRotate_z;
+                @CycleReferencePoint.started += instance.OnCycleReferencePoint;
+                @CycleReferencePoint.performed += instance.OnCycleReferencePoint;
+                @CycleReferencePoint.canceled += instance.OnCycleReferencePoint;
+            }
+        }
+    }
+    public MapActions @Map => new MapActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -532,5 +695,11 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMoveZaxis(InputAction.CallbackContext context);
         void OnRotateZaxis(InputAction.CallbackContext context);
         void OnRadarDistance(InputAction.CallbackContext context);
+    }
+    public interface IMapActions
+    {
+        void OnRotate_xy(InputAction.CallbackContext context);
+        void OnRotate_z(InputAction.CallbackContext context);
+        void OnCycleReferencePoint(InputAction.CallbackContext context);
     }
 }
