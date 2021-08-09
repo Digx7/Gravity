@@ -6,7 +6,13 @@ using UnityEngine.Events;
 public class Map_ControlsHandler : MonoBehaviour
 {
   public Controls Controls;
-  //public Ship_Movement ship;
+
+  public Vector2Event RotateXYInputEvent;
+  public FloatEvent RotateZInputEvent;
+  public FloatEvent CycleReferencePointInputEvent;
+  public FloatEvent ZoomInNOutInputEvent;
+  public UnityEvent ClearSimulationInputEvent;
+  public UnityEvent NewSimulationInputEvent;
 
   void Awake(){
     Controls = new Controls();
@@ -15,10 +21,12 @@ public class Map_ControlsHandler : MonoBehaviour
   }
 
   public void BindInputs() {
-      /*Controls.ZeroGShip.RotateXYaxis.performed += ctx => ship.rotationInputXY = ctx.ReadValue<Vector2>();
-      Controls.ZeroGShip.MoveXYaxis.performed += ctx => ship.moveInputXY = ctx.ReadValue<Vector2>();
-      Controls.ZeroGShip.MoveZaxis.performed += ctx => ship.moveInputZ = ctx.ReadValue<float>();
-      Controls.ZeroGShip.RotateZaxis.performed += ctx => ship.rotationInputZ = ctx.ReadValue<float>();*/
+    Controls.Map.RotateXYaxis.performed += ctx => RotateXYInputEvent.Invoke(ctx.ReadValue<Vector2>());
+    Controls.Map.RotateZaxis.performed += ctx => RotateZInputEvent.Invoke(ctx.ReadValue<float>());
+    Controls.Map.CycleReferencePoint.performed += ctx => CycleReferencePointInputEvent.Invoke(ctx.ReadValue<float>());
+    Controls.Map.ZoomInNOut.performed += ctx => ZoomInNOutInputEvent.Invoke(ctx.ReadValue<float>());
+    Controls.Map.ClearSimulation.performed += ctx => ClearSimulationInputEvent.Invoke();
+    Controls.Map.NewSimulation.performed += ctx => NewSimulationInputEvent.Invoke();
   }
 
   // --- Enable/Disable --------------------------------

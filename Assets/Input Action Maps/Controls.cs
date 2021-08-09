@@ -364,7 +364,7 @@ public class @Controls : IInputActionCollection, IDisposable
             ""id"": ""2c79b5fa-ffe2-425a-b21b-067fc3806645"",
             ""actions"": [
                 {
-                    ""name"": ""Rotate_x/y"",
+                    ""name"": ""RotateXYaxis"",
                     ""type"": ""PassThrough"",
                     ""id"": ""6de658f4-fdce-4b9a-932f-426813ca0afa"",
                     ""expectedControlType"": ""Vector2"",
@@ -372,7 +372,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Rotate_z"",
+                    ""name"": ""RotateZaxis"",
                     ""type"": ""PassThrough"",
                     ""id"": ""4b10066a-abcb-4687-90fe-933155c3dcf1"",
                     ""expectedControlType"": ""Axis"",
@@ -386,6 +386,30 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ClearSimulation"",
+                    ""type"": ""Button"",
+                    ""id"": ""d04c6a0d-a283-44aa-ace2-0e5a2a74a996"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""NewSimulation"",
+                    ""type"": ""Button"",
+                    ""id"": ""df5656a9-b2e9-4391-9142-7b98194f4143"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ZoomInNOut"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""d787becb-ed50-4a4c-823b-f6f898a1ffa1"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -396,7 +420,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controler"",
-                    ""action"": ""Rotate_x/y"",
+                    ""action"": ""RotateXYaxis"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -407,7 +431,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Rotate_z"",
+                    ""action"": ""RotateZaxis"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -418,7 +442,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controler"",
-                    ""action"": ""Rotate_z"",
+                    ""action"": ""RotateZaxis"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -429,7 +453,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controler"",
-                    ""action"": ""Rotate_z"",
+                    ""action"": ""RotateZaxis"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -463,6 +487,61 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Controler"",
                     ""action"": ""CycleReferencePoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28ae0d8f-dc0c-45a2-b26d-1b4712d25732"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controler"",
+                    ""action"": ""ClearSimulation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fdb88176-71a9-4dd4-9a4d-cc13adb2409b"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controler"",
+                    ""action"": ""NewSimulation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Bummpers"",
+                    ""id"": ""a411b97a-3f35-472b-9744-8f4e3cb96617"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomInNOut"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""eb4f3a5b-45f4-4ced-a81d-c243bb341130"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controler"",
+                    ""action"": ""ZoomInNOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""80f77648-deb0-41a6-80f9-b49ebabde259"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controler"",
+                    ""action"": ""ZoomInNOut"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -508,9 +587,12 @@ public class @Controls : IInputActionCollection, IDisposable
         m_ZeroGShip_RadarDistance = m_ZeroGShip.FindAction("RadarDistance", throwIfNotFound: true);
         // Map
         m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
-        m_Map_Rotate_xy = m_Map.FindAction("Rotate_x/y", throwIfNotFound: true);
-        m_Map_Rotate_z = m_Map.FindAction("Rotate_z", throwIfNotFound: true);
+        m_Map_RotateXYaxis = m_Map.FindAction("RotateXYaxis", throwIfNotFound: true);
+        m_Map_RotateZaxis = m_Map.FindAction("RotateZaxis", throwIfNotFound: true);
         m_Map_CycleReferencePoint = m_Map.FindAction("CycleReferencePoint", throwIfNotFound: true);
+        m_Map_ClearSimulation = m_Map.FindAction("ClearSimulation", throwIfNotFound: true);
+        m_Map_NewSimulation = m_Map.FindAction("NewSimulation", throwIfNotFound: true);
+        m_Map_ZoomInNOut = m_Map.FindAction("ZoomInNOut", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -625,16 +707,22 @@ public class @Controls : IInputActionCollection, IDisposable
     // Map
     private readonly InputActionMap m_Map;
     private IMapActions m_MapActionsCallbackInterface;
-    private readonly InputAction m_Map_Rotate_xy;
-    private readonly InputAction m_Map_Rotate_z;
+    private readonly InputAction m_Map_RotateXYaxis;
+    private readonly InputAction m_Map_RotateZaxis;
     private readonly InputAction m_Map_CycleReferencePoint;
+    private readonly InputAction m_Map_ClearSimulation;
+    private readonly InputAction m_Map_NewSimulation;
+    private readonly InputAction m_Map_ZoomInNOut;
     public struct MapActions
     {
         private @Controls m_Wrapper;
         public MapActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Rotate_xy => m_Wrapper.m_Map_Rotate_xy;
-        public InputAction @Rotate_z => m_Wrapper.m_Map_Rotate_z;
+        public InputAction @RotateXYaxis => m_Wrapper.m_Map_RotateXYaxis;
+        public InputAction @RotateZaxis => m_Wrapper.m_Map_RotateZaxis;
         public InputAction @CycleReferencePoint => m_Wrapper.m_Map_CycleReferencePoint;
+        public InputAction @ClearSimulation => m_Wrapper.m_Map_ClearSimulation;
+        public InputAction @NewSimulation => m_Wrapper.m_Map_NewSimulation;
+        public InputAction @ZoomInNOut => m_Wrapper.m_Map_ZoomInNOut;
         public InputActionMap Get() { return m_Wrapper.m_Map; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -644,28 +732,46 @@ public class @Controls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_MapActionsCallbackInterface != null)
             {
-                @Rotate_xy.started -= m_Wrapper.m_MapActionsCallbackInterface.OnRotate_xy;
-                @Rotate_xy.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnRotate_xy;
-                @Rotate_xy.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnRotate_xy;
-                @Rotate_z.started -= m_Wrapper.m_MapActionsCallbackInterface.OnRotate_z;
-                @Rotate_z.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnRotate_z;
-                @Rotate_z.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnRotate_z;
+                @RotateXYaxis.started -= m_Wrapper.m_MapActionsCallbackInterface.OnRotateXYaxis;
+                @RotateXYaxis.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnRotateXYaxis;
+                @RotateXYaxis.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnRotateXYaxis;
+                @RotateZaxis.started -= m_Wrapper.m_MapActionsCallbackInterface.OnRotateZaxis;
+                @RotateZaxis.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnRotateZaxis;
+                @RotateZaxis.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnRotateZaxis;
                 @CycleReferencePoint.started -= m_Wrapper.m_MapActionsCallbackInterface.OnCycleReferencePoint;
                 @CycleReferencePoint.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnCycleReferencePoint;
                 @CycleReferencePoint.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnCycleReferencePoint;
+                @ClearSimulation.started -= m_Wrapper.m_MapActionsCallbackInterface.OnClearSimulation;
+                @ClearSimulation.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnClearSimulation;
+                @ClearSimulation.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnClearSimulation;
+                @NewSimulation.started -= m_Wrapper.m_MapActionsCallbackInterface.OnNewSimulation;
+                @NewSimulation.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnNewSimulation;
+                @NewSimulation.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnNewSimulation;
+                @ZoomInNOut.started -= m_Wrapper.m_MapActionsCallbackInterface.OnZoomInNOut;
+                @ZoomInNOut.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnZoomInNOut;
+                @ZoomInNOut.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnZoomInNOut;
             }
             m_Wrapper.m_MapActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Rotate_xy.started += instance.OnRotate_xy;
-                @Rotate_xy.performed += instance.OnRotate_xy;
-                @Rotate_xy.canceled += instance.OnRotate_xy;
-                @Rotate_z.started += instance.OnRotate_z;
-                @Rotate_z.performed += instance.OnRotate_z;
-                @Rotate_z.canceled += instance.OnRotate_z;
+                @RotateXYaxis.started += instance.OnRotateXYaxis;
+                @RotateXYaxis.performed += instance.OnRotateXYaxis;
+                @RotateXYaxis.canceled += instance.OnRotateXYaxis;
+                @RotateZaxis.started += instance.OnRotateZaxis;
+                @RotateZaxis.performed += instance.OnRotateZaxis;
+                @RotateZaxis.canceled += instance.OnRotateZaxis;
                 @CycleReferencePoint.started += instance.OnCycleReferencePoint;
                 @CycleReferencePoint.performed += instance.OnCycleReferencePoint;
                 @CycleReferencePoint.canceled += instance.OnCycleReferencePoint;
+                @ClearSimulation.started += instance.OnClearSimulation;
+                @ClearSimulation.performed += instance.OnClearSimulation;
+                @ClearSimulation.canceled += instance.OnClearSimulation;
+                @NewSimulation.started += instance.OnNewSimulation;
+                @NewSimulation.performed += instance.OnNewSimulation;
+                @NewSimulation.canceled += instance.OnNewSimulation;
+                @ZoomInNOut.started += instance.OnZoomInNOut;
+                @ZoomInNOut.performed += instance.OnZoomInNOut;
+                @ZoomInNOut.canceled += instance.OnZoomInNOut;
             }
         }
     }
@@ -698,8 +804,11 @@ public class @Controls : IInputActionCollection, IDisposable
     }
     public interface IMapActions
     {
-        void OnRotate_xy(InputAction.CallbackContext context);
-        void OnRotate_z(InputAction.CallbackContext context);
+        void OnRotateXYaxis(InputAction.CallbackContext context);
+        void OnRotateZaxis(InputAction.CallbackContext context);
         void OnCycleReferencePoint(InputAction.CallbackContext context);
+        void OnClearSimulation(InputAction.CallbackContext context);
+        void OnNewSimulation(InputAction.CallbackContext context);
+        void OnZoomInNOut(InputAction.CallbackContext context);
     }
 }

@@ -12,13 +12,14 @@ public class PathPredictor : MonoBehaviour
 
     [SerializeField] private int numberOfIterations;
 
+    [SerializeField] private Vector3 referencePosition;
+
     public void Awake(){
       SetUp();
     }
 
     public void Start(){
-      CreateVirtualAttractors();
-      RunSimulation();
+      RunSimulation(true);
     }
 
     public void FixedUpdate(){
@@ -41,31 +42,50 @@ public class PathPredictor : MonoBehaviour
 
     private void CreateVirtualAttractors(){
       foreach(Attractor attractor in Attractor.Attractors){
-        GameObject virtualObject = Instantiate(virtualAttractorPrefab);
+        Vector3 spawnPoint = attractor.transform.position + (attractor.transform.rotation * new Vector3 (1.1f, 0, 1.1f));
+        GameObject virtualObject = Instantiate(virtualAttractorPrefab, spawnPoint, Quaternion.identity);
         SceneManager.MoveGameObjectToScene(virtualObject, predictionScene);
         virtualObject.transform.position = attractor.gameObject.transform.position;
         virtualObject.transform.rotation = attractor.gameObject.transform.rotation;
-        virtualObject.GetComponent<LineRenderer>().positionCount = numberOfIterations;
 
         Attractor virtualAttractor = virtualObject.GetComponent<Attractor>();
-        virtualAttractor.SetUp(attractor.rb.mass, attractor.initialForce, true);
+        virtualAttractor.SetUp(attractor, true);
+
+        if(virtualAttractor.drawLine)virtualObject.GetComponent<LineRenderer>().positionCount = numberOfIterations;
       }
     }
 
-    private void RunSimulation(){
-      foreach(Attractor va in Attractor.virtualAttractors) va.AddInitialForce();
+    private void SimulateVirtualAttractors(bool initialForceSetUp = false){
+      foreach(Attractor va in Attractor.virtualAttractors){
+        if(initialForceSetUp)va.AddInitialForce();
+        else va.rb.velocity = va.velocity;
+      }
       for (int i = 0; i < numberOfIterations; i++){
         predictionPhysicsScene.Simulate(Time.fixedDeltaTime);
         foreach(Attractor va in Attractor.virtualAttractors){
           va.SimulateGravity();
-          va.gameObject.GetComponent<LineRenderer>().SetPosition(i, va.gameObject.transform.position);
+          if(va.drawLine)va.gameObject.GetComponent<LineRenderer>().SetPosition(i, va.gameObject.transform.position);
         }
       }
     }
 
-    private void ClearSimulation(){
-      foreach(Attractor va in Attractor.virtualAttractors){
-        Destroy(va.gameObject);
+    public void RunSimulation(bool initialForceSetUp = false){
+      CreateVirtualAttractors();
+      SimulateVirtualAttractors(initialForceSetUp);
+    }
+
+    public void ClearSimulation(){
+      //Attractor.virtualAttractors.Clear();
+      int steps = Attractor.virtualAttractors.Count;
+      for(int i = 0; i < steps; i++){
+        Attractor firstAttractor = Attractor.virtualAttractors[0];
+        Attractor.virtualAttractors.Remove(firstAttractor);
+        Destroy(firstAttractor.gameObject);
       }
+      Debug.Log("Simulation has been cleared");
+    }
+
+    public void PrintVirtualAttractorCount(){
+      Debug.Log("The Number of Virtual Attractors is : " + Attractor.virtualAttractors.Count);
     }
 }

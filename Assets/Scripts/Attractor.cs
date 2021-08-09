@@ -11,13 +11,18 @@ public class Attractor : MonoBehaviour
   public static float G = Universe_Settings.gravitationalConstant;
   public Rigidbody rb;
   public Vector3 initialForce;
+  public Vector3 velocity;
+  public bool drawLine = false;
+  public bool isReferencePosition = false;
 
   public bool isVirtualAttractor = false;
 
-  public void SetUp(float _mass, Vector3 _initialForce, bool _isVirtualAttractor = false){
+  public void SetUp(Attractor otherAttractor, bool _isVirtualAttractor = false){
     rb = gameObject.GetComponent<Rigidbody>();
-    rb.mass = _mass;
-    initialForce = _initialForce;
+    rb.mass = otherAttractor.rb.mass;
+    initialForce = otherAttractor.initialForce;
+    velocity = otherAttractor.rb.velocity;
+    drawLine = otherAttractor.drawLine;
     isVirtualAttractor = _isVirtualAttractor;
   }
 

@@ -351,7 +351,7 @@
             "id": "2c79b5fa-ffe2-425a-b21b-067fc3806645",
             "actions": [
                 {
-                    "name": "Rotate_x/y",
+                    "name": "RotateXYaxis",
                     "type": "PassThrough",
                     "id": "6de658f4-fdce-4b9a-932f-426813ca0afa",
                     "expectedControlType": "Vector2",
@@ -359,7 +359,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Rotate_z",
+                    "name": "RotateZaxis",
                     "type": "PassThrough",
                     "id": "4b10066a-abcb-4687-90fe-933155c3dcf1",
                     "expectedControlType": "Axis",
@@ -373,6 +373,30 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ClearSimulation",
+                    "type": "Button",
+                    "id": "d04c6a0d-a283-44aa-ace2-0e5a2a74a996",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "NewSimulation",
+                    "type": "Button",
+                    "id": "df5656a9-b2e9-4391-9142-7b98194f4143",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ZoomInNOut",
+                    "type": "PassThrough",
+                    "id": "d787becb-ed50-4a4c-823b-f6f898a1ffa1",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -383,7 +407,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controler",
-                    "action": "Rotate_x/y",
+                    "action": "RotateXYaxis",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -394,7 +418,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Rotate_z",
+                    "action": "RotateZaxis",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -405,7 +429,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controler",
-                    "action": "Rotate_z",
+                    "action": "RotateZaxis",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -416,7 +440,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controler",
-                    "action": "Rotate_z",
+                    "action": "RotateZaxis",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -450,6 +474,61 @@
                     "processors": "",
                     "groups": "Controler",
                     "action": "CycleReferencePoint",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "28ae0d8f-dc0c-45a2-b26d-1b4712d25732",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controler",
+                    "action": "ClearSimulation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fdb88176-71a9-4dd4-9a4d-cc13adb2409b",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controler",
+                    "action": "NewSimulation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Bummpers",
+                    "id": "a411b97a-3f35-472b-9744-8f4e3cb96617",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomInNOut",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "eb4f3a5b-45f4-4ced-a81d-c243bb341130",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controler",
+                    "action": "ZoomInNOut",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "80f77648-deb0-41a6-80f9-b49ebabde259",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controler",
+                    "action": "ZoomInNOut",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
